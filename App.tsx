@@ -192,22 +192,24 @@ const ProductCard = ({ product, language, theme, onSelect }: { product: Product,
   // Flip Animation Variants with EXAGGERATED Wobble
   const flipVariants = {
     dark: {
-      rotateY: [180, 0, 25, -15, 5, 0], // Bigger swing angles
+      rotateY: 0,
       transition: {
         rotateY: {
+          keyframes: [180, 0, 25, -15, 5, 0], // Bigger swing angles
           duration: 1.5,
           times: [0, 0.4, 0.6, 0.75, 0.9, 1],
-          ease: "easeInOut" as const
+          ease: "easeInOut"
         }
       }
     },
     light: {
-      rotateY: [0, 180, 155, 195, 175, 180], // Bigger swing angles around 180
+      rotateY: 180,
       transition: {
         rotateY: {
+          keyframes: [0, 180, 155, 195, 175, 180], // Bigger swing angles around 180
           duration: 1.5,
           times: [0, 0.4, 0.6, 0.75, 0.9, 1],
-          ease: "easeInOut" as const
+          ease: "easeInOut"
         }
       }
     }
@@ -288,9 +290,6 @@ const SpecItem = ({ label, value, icon }: { label: string, value: string, icon: 
 const ProductDetailModal = ({ product, language, onClose }: { product: Product, language: Language, onClose: () => void }) => {
   if (!product) return null;
   
-  // Generate specific AIO Cooler image URL
-  const imageUrl = `https://image.pollinations.ai/prompt/cinematic%20product%20photography%20of%20${encodeURIComponent(product.name)}%20AIO%20liquid%20cpu%20cooler%20pump%20head%20with%20lcd%20screen%20and%20rgb%20fans,%20black%20background,%20high%20tech,%208k,%20unreal%20engine,%20hyper%20realistic?width=1000&height=1000&nologo=true`;
-
   return (
     <motion.div 
       initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
@@ -307,15 +306,13 @@ const ProductDetailModal = ({ product, language, onClose }: { product: Product, 
         </button>
 
         {/* Image Section */}
-        <div className="lg:w-1/2 relative bg-black flex items-center justify-center overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 animate-pulse" />
-          {/* Replaced with Specific AIO Image */}
+        <div className="lg:w-1/2 relative bg-black">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 animate-pulse" />
           <img 
-            src={imageUrl}
+            src={`https://picsum.photos/seed/${product.imageSeed}/1000/1000`} 
             alt={product.name}
-            className="relative z-10 w-full h-full object-cover scale-95 group-hover:scale-105 transition-transform duration-700"
+            className="relative z-10 w-full h-full object-contain p-12"
           />
-          <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
         </div>
 
         {/* Specs Section */}
@@ -470,24 +467,23 @@ const App: React.FC = () => {
       <main className="flex-1 relative perspective-2000">
         {/* Dynamic Background Layer */}
         <div className="absolute inset-0 z-0 overflow-hidden transition-all duration-1000">
-           {/* Removed blur-sm and increased opacity to 1 as requested */}
            <img 
               src={`https://picsum.photos/seed/${activeBrand.bgSeed}/1920/1080`} 
-              className="w-full h-full object-cover scale-105 transition-opacity duration-700"
-              style={{ opacity: 1 }} 
+              className="w-full h-full object-cover blur-sm scale-105 transition-opacity duration-700"
+              style={{ opacity: theme === 'dark' ? 0.7 : 0.8 }} // Increased Opacity
               alt="bg"
            />
-           {/* Reduced Overlay Opacity to make background more visible */}
+           {/* Mode Overlay - Lighter to show BG more */}
            <div className={`absolute inset-0 transition-colors duration-700 ${
              theme === 'dark' 
-               ? 'bg-black/20' 
-               : 'bg-white/30 mix-blend-overlay' 
+               ? 'bg-black/40' 
+               : 'bg-white/50 mix-blend-overlay' 
            }`}></div>
-           {/* Gradient for Text Readability - Localized to edges */}
+           {/* Gradient for Text Readability at bottom/top */}
            <div className={`absolute inset-0 bg-gradient-to-r transition-colors duration-700 ${
              theme === 'dark'
-               ? 'from-black/60 via-transparent to-black/40'
-               : 'from-white/60 via-transparent to-white/40'
+               ? 'from-black/70 via-transparent to-black/60'
+               : 'from-white/70 via-transparent to-white/60'
            }`}></div>
         </div>
 

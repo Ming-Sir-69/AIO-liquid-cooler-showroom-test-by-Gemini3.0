@@ -1,40 +1,57 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="readme-assets/header-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="readme-assets/header-light.svg">
+  <img alt="极寒水冷展览馆 · ✦ EricMingle69" src="readme-assets/header-light.svg" width="100%">
+</picture>
 
-# 极寒水冷展览馆 · AIO X-TREME Showroom
+<p align="center">
+  <a href="README.md">简体中文</a> · <a href="README.en.md">English</a> · <a href="PERSONAL-NOTICE.md">✦ EricMingle69</a>
+</p>
 
-一个用于展示一体式水冷产品的交互网页实验，适合查看前端展示效果、学习 React 页面组织与多语言界面。页面提供中、英、越南语内容、品牌与产品切换、规格面板及主题切换。
+# 极寒水冷展览馆
 
-**这里的价格与规格是界面演示数据。** `constants.ts` 中的规格由 `generateSpecs()` 生成，价格为静态内容；请勿把它们作为实测结果、官方参数或采购依据。
+一个 React、TypeScript 与 Vite 的一体式水冷产品展示实验。
+页面提供中文、英语、越南语，支持品牌/产品切换、规格面板与主题切换。
+
+**价格与规格是演示数据**：规格由 `generateSpecs()` 生成，价格为静态值，不作为采购依据或官方产品参数。
 
 ## 本地查看
 
-需要 Node.js 与 npm。在仓库根目录执行：
+准备 Node.js 与 npm，在仓库根目录执行：
 
-```bash
+```sh
 npm install
 npm run dev
 ```
 
-Vite 配置使用端口 `3000`，启动后查看终端给出的地址。构建与预览脚本分别是 `npm run build`、`npm run preview`。
+Vite 配置端口为 `3000`；实际地址以终端输出为准。
+当前页面读取本地展示数据，本地查看无需 Gemini Key。
 
-原 AI Studio 入口：[View your app in AI Studio](https://ai.studio/apps/drive/16qPAXZwGodMRXrRyjoLsEQxHa2X4dQUh)。该入口的访问权限以 AI Studio 为准。原模板预留了 `.env.local` 中的 `GEMINI_API_KEY` 配置；当前页面使用本地展示数据，本地查看无需填写 Gemini Key；后续服务接入待确认。
+## 构建和预览
 
-## 目录入口
+```sh
+npm run build
+npm run preview
+```
 
-| 文件 | 用途 |
+外部图片或其他资源的可用性会影响展示效果。
+
+## 从文件进入
+
+| 文件 | 内容 |
 | --- | --- |
-| [App.tsx](App.tsx) | 交互与页面组件 |
-| [constants.ts](constants.ts) | 多语言文案、品牌与演示产品数据 |
-| [types.ts](types.ts) | 页面数据类型 |
-| [index.tsx](index.tsx) / [index.html](index.html) | 页面入口 |
-| [package.json](package.json) / [vite.config.ts](vite.config.ts) | 依赖、脚本与开发服务配置 |
+| [App.tsx](App.tsx) | 页面交互与组件 |
+| [constants.ts](constants.ts) | 三种语言与演示产品数据 |
+| [types.ts](types.ts) | 数据类型 |
+| [package.json](package.json) · [vite.config.ts](vite.config.ts) | 依赖、脚本与开发服务 |
 
-## 状态与贡献
+## 原始入口与使用范围
 
-当前版本为前端展示实验，`package.json` 标记版本 `0.0.0`。页面包含外部资源引用，资源可用性会影响展示效果。欢迎通过 Issue 或 Pull Request 改进语言表达、响应式布局与演示数据标识；如补充真实产品资料，请注明官方来源与核对日期。
+项目来自 [AI Studio 应用入口](https://ai.studio/apps/drive/16qPAXZwGodMRXrRyjoLsEQxHa2X4dQUh)，访问权限由 AI Studio 决定。
+模板预留了 Gemini 环境定义，后续服务接入需另行确认。
+仓库没有覆盖原代码和资源的 LICENSE；品牌名称与第三方资源保留各自归属。
 
-## 维护与许可
+---
 
-仓库维护：[Ming-Sir-69](https://github.com/Ming-Sir-69)。品牌名称及第三方资源保留各自归属。仓库尚未提供 LICENSE 或 NOTICE，代码与资源的复用许可待确认。
+文档维护：**✦ EricMingle69** · [Ming-Sir-69](https://github.com/Ming-Sir-69)  
+[个人标识、许可与权限说明](PERSONAL-NOTICE.md) · 明暗页眉随 GitHub 主题自动切换。
